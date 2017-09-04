@@ -1,0 +1,21 @@
+{
+  "name": "beer_locker",
+  "version": "1.0.0",
+  "description": "RESTful API using Node, Express, Mongoose to interact with MongoDB, Passport for authentication, OAuth2orize for OAuth support, and explore best practices and tools.",
+  "main": "serve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JD-V",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.2",
+    "express": "^4.1.1",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.11.10",
+    "morgan": "^1.8.2",
+    "passport": "^0.4.0",
+    "passport-http": "^0.3.0"
+  }
+}
