@@ -2,27 +2,26 @@
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
 var userModel = require('../models/user');
+var clients = require('./clientRoutes');
 
+/*The one thing to note here is that when we call passport.use() 
+we are not just supplying a BasicStrategy object. Instead we are 
+also giving it the name client-basic. Without this, we would not 
+be able to have two BasicStragies running at the same time. */
 
-passport.use(new BasicStrategy(
+passport.use('client-basic', new BasicStrategy(
 
     function(username,password,callback) {
-        userModel.findOne({username:username}, function(err,user) {
-
+        Client.findOne({ id: username }, function (err, client) {
             if (err) { return callback(err); }
 
-            // No user found with that username
-            if (!user) { return callback(null, false); }
+            // No client found with that id or bad password
+            if (!client || client.secret !== password) { return callback(null, false); }
 
-            user.verifyPassword(password, function(error,isMatch){
-                if (err) { return callback(err); }
-                
-                // Inavalid password
-                if(!isMatch) { return callback(null,false); }
-                // Success
-                return callback(null, user);
-            })
-        })
+            // Success
+            return callback(null, client);
+        });
+
     }
 ))
 

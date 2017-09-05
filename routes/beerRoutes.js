@@ -36,7 +36,7 @@ router.get("/:bId", function(req,res,next) {
 })
 
 router.post("/", function(req,res,next) {
-    var beer = new beerModel(_.pick(req.body,['name','type','quantity']));
+    var beer = new beerModel(_.pick(req.body,['name','type','quantity','userId']));
 
     beer.save(function(err,data){
         if(err) return next(err);
@@ -47,7 +47,7 @@ router.post("/", function(req,res,next) {
 
 router.put("/:bId", function(req,res,next) {
     
-    var updates = _.pick(req.body,['name','type','quantity']);
+    var updates = _.pick(req.body,['quantity']);
 
     req.beer.update(updates, function(err,data) {
         if(err) return next(err);

@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var beer = require('./routes/beerRoutes');
 var user = require('./routes/userRoutes');
 var passport = require('passport');
-
+var clients = require('./routes/clientRoutes');
 
 mongoose.connect("mongodb://JD_V:Bats1918@ds121464.mlab.com:21464/beerdatabase");
 
@@ -17,7 +17,7 @@ db.on('error',function(err){
     console.log(err);
 })
 
-db.once('open',function(){
+db.once('open',function(){  
     console.log("dabatase connectio was successful");
 })
 
@@ -29,6 +29,7 @@ var router = express.Router();
 
 // Use the passport package in our application
 app.use(passport.initialize());
+app.use('/api/clients', clients);
 app.use('/api/beer', beer);
 app.use('/api/user', user);
 

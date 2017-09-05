@@ -6,6 +6,7 @@ var beerSchema = new Schema({
     name: {type:String,required:true},
     type: {type:String,required:true},
     quantity: {type:Number,required:true},
+    userId: {type:String,required:true},
     createdAt: {type:Date, default:Date.now},
     updatedAt: {type:Date, default:Date.now}
 });
